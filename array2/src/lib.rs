@@ -4,24 +4,20 @@ pub struct Array2<T: Clone> {
 width: usize,
 height: usize,
 }
-/*Creates an Array2 object with a width, height, and data */
+
+impl Array2<T>{
+    /*Creates an Array2 object with a width, height, and data */
 pub fn new(width: usize, height: usize)->self;
-/*This will return an iterator so the Array2 can be iterated through by row*/
-pub fn iter_row_major(&self) -> iterator<T>;
 
-/*This will return an iterator so the Array2 can be iterated through by column*/
-pub fn iter_column_major(&self)->iterator<T>;
+/*This will create an Array2 where the Array2 is order ordered by rows */
+pub fn from_row_major(width: usize, height: usize)->self;
 
-/*This will return an iterator so the Array2 can be iterated through by 3x3 blocks*/
-pub fn iter_square(&self)->iterator<T>;
+/*This will create an Array2 where the Array2 is ordered by column */
+pub fn from_column_major(width: usize, height: usize)->self;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+/*This will return a value at a given position within Array2 */
+pub fn iter_row_major(&self) -> &T;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+/*This will return a value at a given position within Array2*/
+pub fn iter_column_major(&self)->&T;
 }
