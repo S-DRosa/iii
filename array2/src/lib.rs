@@ -3,6 +3,7 @@
 pub struct Array2<T: Clone> {
 width: usize,
 height: usize,
+data: Vec<Vec<T>>,
 }
 
 impl Array2<T>{
