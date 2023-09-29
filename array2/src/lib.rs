@@ -9,7 +9,7 @@ impl Array2<T>{
     /*Creates an Array2 object with a width, height, and data */
 pub fn new(width: usize, height: usize)->self{
     //data Vec with default values
-    let data = vec![Default::default(); width * height];
+    let data = vec![vec![T::default(); width]; height];
 
     Array2{
         data,
