@@ -31,6 +31,8 @@ impl <T: Clone> Array2<T>{
             let mut temp_vec = Vec::new();
             for _row in 0..height{
                 for _column in 0..width{
+                    /*The invariant here is that each element has been placed in the correct
+                    position based on the current row and column */
                     temp_vec.push(user_data[counter].clone());
                     counter += 1;
                 }
@@ -57,6 +59,8 @@ impl <T: Clone> Array2<T>{
             let mut counter = 0;
             for _row in 0..width{
                 for column in 0..height{
+                    /*The invariant here is that every item has been placed in the correct position
+                    within the 2d array based on the current row and column*/
                     if counter < height {
                         temp_vec.push(data[counter].clone());
                         arr2_data.push(temp_vec.clone());
@@ -80,15 +84,23 @@ impl <T: Clone> Array2<T>{
 
     /*This will return a value at a given position within Array2 */
     pub fn iter_row_major(&self) -> impl Iterator<Item = &T>{
+        /*The invariant here is that the 2d array is already organized by 
+        row major format */
         self.data.iter().flatten()
     }
 
     /*This will return a value at a given position within Array2*/
     pub fn iter_column_major(&self)->impl Iterator<Item = &T>{
+        /*The invariant here is that every item read thus far lie in the same column, but
+        different rows */
+        /*This bit of code is code altered from lecture 9 of class */
         (0..(self.width)).flat_map(move|col|(0..(self.height)).map(move|r| self.get(r,col).unwrap()))
     }
 
     pub fn get(&self, row: usize, column: usize)->Option<&T>{
+        /* the invariant here some type of item will be returned. either a value from the
+        the 2d array or None*/ 
+        /*This bit of code is from lecture 9 of class */
         if row < self.height && column < self.width{
             Some(&self.data[row][column])
         }
