@@ -85,11 +85,11 @@ impl <T: Clone> Array2<T>{
 
     /*This will return a value at a given position within Array2*/
     pub fn iter_column_major(&self)->impl Iterator<Item = &T>{
-        (0..self.width).flat_map(move|col|(0..self.height).map(move|r| self.get(r,col).unwrap()))
+        (0..(self.width)).flat_map(move|col|(0..(self.height)).map(move|r| self.get(r,col).unwrap()))
     }
 
     pub fn get(&self, row: usize, column: usize)->Option<&T>{
-        if row < self.width && column < self.height{
+        if row < self.height && column < self.width{
             Some(&self.data[row][column])
         }
         else{
@@ -106,6 +106,9 @@ mod tests {
     fn test_new(){
         let vec = Vec::from([1,2,3,4,5,6,7,8,9,0]);
         let arr2 = Array2::from_column_major(vec,5,2);
-        print!("{:?}",arr2.iter_row_major().collect::<Vec<_>>());
+        print!("{:?}",arr2.data);
+        print!("{:?}",arr2.get(0,1).unwrap());
+        print!("Num columns: {:?}  num rows: {:?}", arr2.width, arr2.height);
+        print!("{:?}",arr2.iter_column_major().collect::<Vec<_>>());
     }
 }
