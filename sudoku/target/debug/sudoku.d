@@ -1,1 +1,1 @@
-/mnt/c/Users/ser94/OneDrive/Documents/fall23/csc411/iii/sudoku/target/debug/sudoku: /mnt/c/Users/ser94/OneDrive/Documents/fall23/csc411/iii/array2/src/lib.rs /mnt/c/Users/ser94/OneDrive/Documents/fall23/csc411/iii/sudoku/src/main.rs
+/Users/marcinpawlukiewicz/411_rust/iii/sudoku/target/debug/sudoku: /Users/marcinpawlukiewicz/411_rust/iii/array2/src/lib.rs /Users/marcinpawlukiewicz/411_rust/iii/sudoku/src/main.rs
