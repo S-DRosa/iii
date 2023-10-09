@@ -9,6 +9,9 @@
 - Input sudoku puzzle from an image.
 - Ability to check if a sudoku puzzle is valid.
 
+## Help
+- Attended Office Hours
+
 
 ## Design Checklist:
 - Abstract "Thing" Represented: Two-dimensional arrays, specifically sudoku puzzles, with functions to validate their correctness.
@@ -24,4 +27,4 @@
   - Invariant: The length must be equal to `width * height`, where `width > 0` and `height > 0`.
 
 ## Hours Spent:
-We spent approximately X hours completing the assignment.
+We spent approximately 15 hours completing the assignment.
