@@ -83,18 +83,18 @@ impl <T: Clone> Array2<T>{
     }
 
     /*This will return a value at a given position within Array2 */
-    pub fn iter_row_major(&self) -> impl Iterator<Item = &T>{
+    pub fn iter_row_major(&self) -> impl Iterator<Item = (usize,usize,&T)>{
         /*The invariant here is that the 2d array is already organized by 
         row major format */
-        self.data.iter().flatten()
+        (0..(self.height)).flat_map(move|row|(0..(self.width)).map(move|col| (row,col,self.get(row,col).unwrap())))
     }
 
     /*This will return a value at a given position within Array2*/
-    pub fn iter_column_major(&self)->impl Iterator<Item = &T>{
+    pub fn iter_column_major(&self)->impl Iterator<Item = (usize,usize,&T)>{
         /*The invariant here is that every item read thus far lie in the same column, but
         different rows */
         /*This bit of code is code altered from lecture 9 of class */
-        (0..(self.width)).flat_map(move|col|(0..(self.height)).map(move|r| self.get(r,col).unwrap()))
+        (0..(self.width)).flat_map(move|col|(0..(self.height)).map(move|row| (row,col,self.get(row,col).unwrap())))
     }
 
     pub fn get(&self, row: usize, column: usize)->Option<&T>{
@@ -103,6 +103,18 @@ impl <T: Clone> Array2<T>{
         /*This bit of code is from lecture 9 of class */
         if row < self.height && column < self.width{
             Some(&self.data[row][column])
+        }
+        else{
+            None
+        }
+    }
+
+    pub fn get_mut(&mut self, row: usize, column: usize)->Option<&mut T>{
+        /* the invariant here some type of item will be returned. either a value from the
+        the 2d array or None*/ 
+        /*This bit of code is from lecture 9 of class */
+        if row < self.height && column < self.width{
+            Some(&mut self.data[row][column])
         }
         else{
             None
